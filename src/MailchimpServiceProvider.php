@@ -1,5 +1,5 @@
 <?php
-namespace NZTim\Mailchimp;
+namespace CapeAndBay\Mailchimp;
 
 use Illuminate\Support\ServiceProvider;
 

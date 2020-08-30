@@ -1,8 +1,8 @@
-<?php namespace NZTim\Mailchimp;
+<?php namespace CapeAndBay\Mailchimp;
 
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpException;
-use NZTim\Mailchimp\Exception\MailchimpInternalErrorException;
+use CapeAndBay\Mailchimp\Exception\MailchimpBadRequestException;
+use CapeAndBay\Mailchimp\Exception\MailchimpException;
+use CapeAndBay\Mailchimp\Exception\MailchimpInternalErrorException;
 use Requests;
 use Requests_Auth_Basic;
 use Requests_Response;
@@ -21,6 +21,10 @@ class MailchimpApi
     }
 
     // API calls --------------------------------------------------------------
+    public function getReports(array $params = []): array
+    {
+        return $this->call('get', '/reports', $params);
+    }
 
     public function getLists(array $params = []): array
     {

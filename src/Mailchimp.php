@@ -1,7 +1,7 @@
-<?php namespace NZTim\Mailchimp;
+<?php namespace CapeAndBay\Mailchimp;
 
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpException;
+use CapeAndBay\Mailchimp\Exception\MailchimpBadRequestException;
+use CapeAndBay\Mailchimp\Exception\MailchimpException;
 use Throwable;
 
 class Mailchimp
@@ -17,6 +17,12 @@ class Mailchimp
             $api = new MailchimpApi($apikey);
         }
         $this->api = $api;
+    }
+
+    public function getReports(array $params = []): array
+    {
+        $results = $this->api->getReports($params);
+        return $results['reports'] ?? [];
     }
 
     public function getLists(array $params = []): array

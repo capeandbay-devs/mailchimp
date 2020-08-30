@@ -1,4 +1,4 @@
-<?php namespace NZTim\Mailchimp;
+<?php namespace CapeAndBay\Mailchimp;
 
 use Illuminate\Support\Facades\Facade;
 

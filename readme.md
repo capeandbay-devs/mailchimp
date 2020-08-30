@@ -6,19 +6,19 @@ Basic abstraction with Laravel integration for Mailchimp API v3
 
 ### Installation
 
-- `composer require nztim/mailchimp`
+- `composer require capeandbay/mailchimp`
 - For Laravel support:
     - Laravel 5.5+ will auto-discover the package, for earlier versions you will need to:
-        - Add the service provider to `config/app.php`: `NZTim\Mailchimp\MailchimpServiceProvider::class,`
-        - Register the facade: `'Mailchimp' => NZTim\Mailchimp\MailchimpFacade::class,`
+        - Add the service provider to `config/app.php`: `CapeAndBay\Mailchimp\MailchimpServiceProvider::class,`
+        - Register the facade: `'Mailchimp' => CapeAndBay\Mailchimp\MailchimpFacade::class,`
     - Add an `.env` value for `MC_KEY` (your API key)
     - Optionally, publish the config file:
-        - `php artisan vendor:publish --provider=NZTim\Mailchimp\MailchimpServiceProvider`
+        - `php artisan vendor:publish --provider=CapeAndBay\Mailchimp\MailchimpServiceProvider`
 
 ### Usage
 
-- Within Laravel 5, use the `Mailchimp` facade or inject `NZTim\Mailchimp\Mailchimp` using the container.
-- Alternatively, instantiate using the API key: `$mc = new NZTim\Mailchimp\Mailchimp($apikey)`
+- Within Laravel 5, use the `Mailchimp` facade or inject `CapeAndBay\Mailchimp\Mailchimp` using the container.
+- Alternatively, instantiate using the API key: `$mc = new CapeAndBay\Mailchimp\Mailchimp($apikey)`
 
 ```php
 // Get an array of all available lists:
@@ -48,7 +48,7 @@ Mailchimp::api($method, $endpoint, $data = []); // Returns an array.
 For access to all the member properties available in the v3 API, use the Member class to subscribe and update list members:
 
 ```php
-$member = (new NZTim\Mailchimp\Member($email))->merge_fields(['FNAME' => 'First name'])->email_type('text')->confirm(false);
+$member = (new CapeAndBay\Mailchimp\Member($email))->merge_fields(['FNAME' => 'First name'])->email_type('text')->confirm(false);
 Mailchimp::addUpdateMember($member);
 ```
 
@@ -58,8 +58,8 @@ As with the `subscribe()` method, double-opt-in is default but existing members 
 
 - Exceptions are thrown for all errors.
 - Networking/communications errors will usually be of the type `Requests_Exception`.
-- API errors will be of the base type `NZTim\Mailchimp\MailchimpException`, e.g. incorrect API key, list does not exist.
-- `NZTim\Mailchimp\Exception\MailchimpBadRequestException` includes a `response()` method that returns the response body as an array.
+- API errors will be of the base type `CapeAndBay\Mailchimp\MailchimpException`, e.g. incorrect API key, list does not exist.
+- `CapeAndBay\Mailchimp\Exception\MailchimpBadRequestException` includes a `response()` method that returns the response body as an array.
 - Gotchas: the API throws an error when you:
     - Specify a merge field name with incorrect capitalisation
     - Omit a required merge field when adding a new member
@@ -75,7 +75,7 @@ Mailchimp::subscribe('listid', 'user@domain.com');
 Mailchimp::subscribe('listid', 'user@domain.com', ['FNAME' => 'First name', 'LNAME' => 'Last name'], false);
 
 // Subscribe/update a user using the Member class
-$member = (new NZTim\Mailchimp\Member($email))->interests(['abc123fed' => true])->language('th');
+$member = (new CapeAndBay\Mailchimp\Member($email))->interests(['abc123fed' => true])->language('th');
 Mailchimp::addUpdateMember('listid', $member);
 ```
 

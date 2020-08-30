@@ -1,10 +1,10 @@
 <?php
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpInternalErrorException;
-use NZTim\Mailchimp\Mailchimp;
-use NZTim\Mailchimp\MailchimpApi;
+use CapeAndBay\Mailchimp\Exception\MailchimpBadRequestException;
+use CapeAndBay\Mailchimp\Exception\MailchimpInternalErrorException;
+use CapeAndBay\Mailchimp\Mailchimp;
+use CapeAndBay\Mailchimp\MailchimpApi;
 use PHPUnit\Framework\TestCase;
 
 class MailchimpTest extends TestCase
@@ -48,7 +48,7 @@ class MailchimpTest extends TestCase
 
     /**
      * @test
-     * @expectedException NZTim\Mailchimp\Exception\MailchimpBadRequestException
+     * @expectedException CapeAndBay\Mailchimp\Exception\MailchimpBadRequestException
      * @expectedExceptionMessage Mailchimp API error: list id:listId does not exist
      */
     public function status_list_not_found()
@@ -60,7 +60,7 @@ class MailchimpTest extends TestCase
 
     /**
      * @test
-     * @expectedException NZTim\Mailchimp\Exception\MailchimpInternalErrorException
+     * @expectedException CapeAndBay\Mailchimp\Exception\MailchimpInternalErrorException
      * @expectedExceptionMessage Mailchimp API error: Internal error
      */
     public function status_api_internal_error()
@@ -83,7 +83,7 @@ class MailchimpTest extends TestCase
 
     /**
      * @test
-     * @expectedException NZTim\Mailchimp\Exception\MailchimpException
+     * @expectedException CapeAndBay\Mailchimp\Exception\MailchimpException
      */
     public function status_unknown_error()
     {
@@ -169,7 +169,7 @@ class MailchimpTest extends TestCase
     /** @test */
     public function add_update_member_new()
     {
-        $member = (new \NZTim\Mailchimp\Member('test@example.com'));
+        $member = (new \CapeAndBay\Mailchimp\Member('test@example.com'));
         $this->api->shouldReceive('getList')->with(self::LISTID)->andReturn([]);
         $this->api->shouldReceive('getMember')->andThrow(new MailchimpBadRequestException);
         $this->api->shouldReceive('responseCodeNotFound')->andReturn(true);
@@ -181,7 +181,7 @@ class MailchimpTest extends TestCase
     /** @test */
     public function add_update_member_existing()
     {
-        $member = (new \NZTim\Mailchimp\Member('test@example.com'));
+        $member = (new \CapeAndBay\Mailchimp\Member('test@example.com'));
         $this->api->shouldReceive('getList')->with(self::LISTID)->andReturn([]);
         $this->api->shouldReceive('getMember')->andReturn(['status' => 'subscribed']);
         $this->api->shouldReceive('addUpdateMember')->with(self::LISTID, $member);

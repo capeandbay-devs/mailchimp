@@ -1,11 +1,15 @@
 {
-    "name": "nztim/mailchimp",
-    "description": "Mailchimp API wrapper, includes Laravel 5 support.",
+    "name": "capeandbay/mailchimp",
+    "description": "Mailchimp API wrapper, includes Laravel 6/7 support.",
     "license": "MIT",
     "authors": [
         {
             "name": "Tim",
             "email": "tim@nztim.com"
+        },
+        {
+            "name": "Angel Gonzalez",
+            "email": "angel@capeandbay.com"
         }
     ],
     "require": {
@@ -18,16 +22,16 @@
     },
     "autoload": {
         "psr-4": {
-            "NZTim\\Mailchimp\\": "src/"
+            "CapeAndBay\\Mailchimp\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NZTim\\Mailchimp\\MailchimpServiceProvider"
+                "CapeAndBay\\Mailchimp\\MailchimpServiceProvider"
             ],
             "aliases": {
-                "Mailchimp": "NZTim\\Mailchimp\\MailchimpFacade"
+                "Mailchimp": "CapeAndBay\\Mailchimp\\MailchimpFacade"
             }
         }
     }

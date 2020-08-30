@@ -20,6 +20,6 @@ cache:
 notifications:
   email:
     recipients:
-      - travis@nztim.com
+      - developers@capeandbay.com
     on_success: always
     on_failure: always
